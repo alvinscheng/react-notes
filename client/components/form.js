@@ -9,14 +9,23 @@ export default class Form extends Component {
 
   saveNote(event) {
     event.preventDefault()
-    console.log('saving...')
+    const data = new FormData(event.target)
+    const note = {
+      title: data.get('title'),
+      content: data.get('content')
+    }
+    fetch('/notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(note)
+    }).then(() => event.target.reset())
   }
 
   render() {
     return (
       <form onSubmit={ this.saveNote }>
-        <input type='text'/>
-        <textarea rows='4'></textarea>
+        <input type='text' name='title'/>
+        <textarea rows='4' name='content'></textarea>
         <button type='submit'>Save</button>
       </form>
     )

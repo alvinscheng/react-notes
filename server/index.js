@@ -4,11 +4,13 @@ const knex = require('knex')({
   connection: 'postgres://localhost:5432/react-notes'
 })
 const dbGateway = require('./db-gateway')
+const bodyParser = require('body-parser')
 
 const notes = dbGateway(knex, 'notes')
 const app = express()
 
 app.use(express.static('server/public'))
+app.use(bodyParser.json())
 
 app.get('/notes', (req, res) => {
   notes
