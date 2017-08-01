@@ -16,13 +16,18 @@ export default class NotesList extends Component {
     return (
       (!this.state.notes[0])
       ? <p>Loading...</p>
-      : <ul>
+      : <div className='list-group'>
         {
           this.state.notes.map((note, i) => {
-            return <li key={ i }>{ note.title }</li>
+            return <a
+              href={'#' + note.title}
+              className='list-group-item'
+              key={ i }>
+              { note.title }
+            </a>
           })
         }
-      </ul>
+      </div>
     )
   }
 }
