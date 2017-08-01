@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NotesList from './components/notes-list'
+import Form from './components/form'
 import { render } from 'react-dom'
 
 class MainPage extends Component {
@@ -13,6 +14,9 @@ class MainPage extends Component {
           <div className='row'>
             <div className='col-sm-3'>
               <NotesList />
+            </div>
+            <div className='col-sm-6'>
+              <Form />
             </div>
           </div>
         </div>
