@@ -6,7 +6,7 @@ const knex = require('knex')({
 
 const app = express()
 
-app.use(express.static('public'))
+app.use(express.static('server/public'))
 
 app.get('/notes', (req, res) => {
   knex('notes').then(notes => res.json(notes))

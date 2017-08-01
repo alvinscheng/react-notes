@@ -4,15 +4,16 @@
   "description": "A web app for JS developers want to save notes about what they've learned.",
   "main": "index.js",
   "scripts": {
-    "bundle": "browserify -t babelify client/index.js > server/public/bundle.js",
-    "bundle:watch": "watchify -vd -t babelify client/index.js > server/public/bundle.js",
+    "bundle": "browserify -t babelify client/index.js -o server/public/bundle.js",
+    "watch:client": "watchify -vd -t babelify client/index.js -o server/public/bundle.js",
     "lint": "run-p lint:*",
     "lint:html": "htmlhint ./**/*.html",
     "lint:css": "stylelint ./**/*.css",
     "lint:js": "eslint ./**/*.js",
     "test": "npm run lint",
     "precommit": "npm test",
-    "watch": "nodemon server/index.js"
+    "watch:server": "nodemon server/index.js --ignore server/public/**",
+    "watch": "run-p watch:client watch:server"
   },
   "keywords": [],
   "author": "",
