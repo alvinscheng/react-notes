@@ -5,6 +5,7 @@ export default class NotesList extends Component {
     super(props)
     this.state = { notes: [] }
     this.getNotes = this.getNotes.bind(this)
+    this.delete = this.delete.bind(this)
   }
 
   componentDidMount() {
@@ -21,6 +22,11 @@ export default class NotesList extends Component {
     this.setState({ notes })
   }
 
+  async delete(event) {
+    await fetch('/notes/' + event.target.dataset.id, { method: 'DELETE' })
+    this.getNotes()
+  }
+
   render() {
     return (
       (!this.state.notes[0])
@@ -31,6 +37,8 @@ export default class NotesList extends Component {
             return <a
               href={'#' + note.title}
               className='list-group-item'
+              onClick={ this.delete }
+              data-id={ note.id }
               key={ note.id }>
               { note.title }
             </a>
