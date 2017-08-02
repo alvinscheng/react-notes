@@ -22,9 +22,9 @@ export default class NotesList extends Component {
     this.setState({ notes })
   }
 
-  delete(event) {
-    console.log(event.target.dataset.id)
-    fetch('/notes/' + event.target.dataset.id, { method: 'DELETE' })
+  async delete(event) {
+    await fetch('/notes/' + event.target.dataset.id, { method: 'DELETE' })
+    this.getNotes()
   }
 
   render() {
