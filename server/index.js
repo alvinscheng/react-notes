@@ -24,4 +24,9 @@ app.post('/notes', (req, res) => {
     .then(() => res.sendStatus(201))
 })
 
+app.delete('/notes/:id', (req, res) => {
+  notes
+    .deleteById(req.params.id)
+})
+
 app.listen(3000, () => console.log('Listening on 3000!'))
