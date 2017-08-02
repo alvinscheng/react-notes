@@ -1,27 +1,16 @@
-import React, { Component } from 'react'
-import NotesList from './components/notes-list'
-import { render } from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/app'
+import store from './store'
 
-class MainPage extends Component {
-  render() {
-    return (
-      <div>
-        <div className='container'>
-          <div className='row'>
-            <h1 className='text-center'>Notes</h1>
-          </div>
-          <div className='row'>
-            <div className='col-sm-3'>
-              <NotesList />
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+function render() {
+  const update = store.getState()
+  ReactDOM.render(
+    <App update={ update }/>,
+    document.querySelector('#app')
+  )
 }
 
-render(
-  <MainPage />,
-  document.querySelector('#app')
-)
+store.subscribe(render)
+
+render()
