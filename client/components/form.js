@@ -4,8 +4,16 @@ import store from '../store'
 export default class Form extends Component {
   constructor(props) {
     super(props)
-    this.state = { notes: [] }
+    this.state = { title: '', content: '' }
     this.saveNote = this.saveNote.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    const { value, name } = event.target
+    name === 'title'
+      ? this.setState({ title: value })
+      : this.setState({ content: value })
   }
 
   saveNote(event) {
@@ -20,14 +28,18 @@ export default class Form extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(note)
     })
-    .then(() => store.dispatch({ type: 'NOTE_ADDED' }))
+    .then(() => {
+      store.dispatch({ type: 'NOTE_ADDED' })
+      this.setState({ title: '', content: '' })
+    })
   }
 
   render() {
+    const { title, content } = this.state
     return (
       <form onSubmit={ this.saveNote }>
-        <input type='text' name='title'/>
-        <textarea rows='4' name='content'></textarea>
+        <input type='text' name='title' onChange={ this.handleChange } value={ title }/>
+        <textarea rows='4' name='content' onChange={ this.handleChange } value={ content }></textarea>
         <button type='submit'>Save</button>
       </form>
     )
