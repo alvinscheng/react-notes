@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import store from '../store'
 
 export default class Form extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ export default class Form extends Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(note)
-    }).then(() => event.target.reset())
+    })
+    .then(() => store.dispatch({ type: 'NOTE_ADDED' }))
   }
 
   render() {
