@@ -38,9 +38,20 @@ export default class Form extends Component {
     const { title, content } = this.state
     return (
       <form onSubmit={ this.saveNote }>
-        <input type='text' name='title' onChange={ this.handleChange } value={ title }/>
-        <textarea rows='4' name='content' onChange={ this.handleChange } value={ content }></textarea>
-        <button type='submit'>Save</button>
+        <input
+          type='text'
+          name='title'
+          className='form-control'
+          onChange={ this.handleChange }
+          value={ title }/>
+        <textarea
+          rows='15'
+          name='content'
+          className='form-control'
+          onChange={ this.handleChange }
+          value={ content }>
+        </textarea>
+        <button type='submit' className='btn btn-info btn-block'>Save</button>
       </form>
     )
   }
