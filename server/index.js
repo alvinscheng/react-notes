@@ -7,7 +7,6 @@ const dbGateway = require('./db-gateway')
 const bodyParser = require('body-parser')
 
 const notes = dbGateway(knex, 'notes')
-const port = process.env.PORT || 3000
 const app = express()
 
 app.use(express.static('server/public'))
@@ -32,4 +31,4 @@ app.delete('/notes/:id', (req, res) => {
     .then(() => res.sendStatus(204))
 })
 
-app.listen(port || 3000, () => console.log('Listening on ' + port))
+app.listen(process.env.PORT, () => console.log('Listening on ' + process.env.PORT))

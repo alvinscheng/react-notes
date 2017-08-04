@@ -3,7 +3,7 @@ const { expect } = require('chai')
 const request = require('request')
 
 describe('Notes', () => {
-  const url = 'http://localhost:3000/notes'
+  const url = 'http://localhost:' + process.env.PORT + '/notes'
 
   describe('GET', () => {
     it('should return an array of notes', done => {
