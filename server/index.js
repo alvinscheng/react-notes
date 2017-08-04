@@ -17,7 +17,6 @@ app.get('/notes', (req, res) => {
   notes
     .find()
     .then(notes => res.json(notes))
-    .then(() => res.sendStatus(200))
 })
 
 app.post('/notes', (req, res) => {
