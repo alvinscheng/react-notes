@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const knex = require('knex')({
   dialect: 'pg',
-  connection: 'postgres://localhost:5432/react-notes'
+  connection: process.env.DATABASE_URL
 })
 const dbGateway = require('./db-gateway')
 const bodyParser = require('body-parser')
