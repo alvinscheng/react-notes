@@ -2,8 +2,8 @@
 create table notes (
   id      serial,
   title   text,
-  note_content text,
-  note_date timestamp
+  content text,
+  date timestamp
 );
 
 ---
